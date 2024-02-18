@@ -26,3 +26,84 @@ document.querySelector("#saturation").addEventListener("click", () => {
         ctx.fillText(text, x, y); // Draw the text on the canvas
     }
 });
+
+document.getElementById("add-text-btn").addEventListener("click", () => {
+    const text = document.getElementById("text-input").value;
+    if (text.trim() === "") {
+        alert("Please enter some text.");
+        return;
+    }
+
+    const textElement = document.createElement("div");
+    textElement.contentEditable = true;
+    textElement.classList.add("editable-text");
+    textElement.style.position = "absolute";
+    textElement.style.left = "50px";
+    textElement.style.top = "50px";
+    textElement.style.border = "1px solid #000";
+    textElement.style.padding = "5px";
+    textElement.innerText = text;
+
+    document.querySelector(".preview-img").appendChild(textElement);
+
+    makeResizableAndDraggable(textElement);
+});
+
+
+function makeResizableAndDraggable(element) {
+    let isResizing = false;
+    let isDragging = false;
+    let startX, startY, startWidth, startHeight, startLeft, startTop, startFontSize;
+
+    element.addEventListener("mousedown", (event) => {
+        if (event.target.classList.contains("editable-text")) {
+            const rect = element.getBoundingClientRect();
+            const isCorner = event.offsetX < 10 || event.offsetX > rect.width - 10 || event.offsetY < 10 || event.offsetY > rect.height - 10;
+            if (isCorner) {
+                isResizing = true;
+                startWidth = element.offsetWidth;
+                startHeight = element.offsetHeight;
+                startX = event.clientX;
+                startY = event.clientY;
+                startFontSize = parseInt(window.getComputedStyle(element).fontSize);
+            } else {
+                isDragging = true;
+                startLeft = element.offsetLeft;
+                startTop = element.offsetTop;
+                startX = event.clientX;
+                startY = event.clientY;
+            }
+        }
+    });
+
+    document.addEventListener("mousemove", (event) => {
+        if (isDragging) {
+            const diffX = event.clientX - startX;
+            const diffY = event.clientY - startY;
+            element.style.left = startLeft + diffX + "px";
+            element.style.top = startTop + diffY + "px";
+        }
+
+        if (isResizing) {
+            const diffX = event.clientX - startX;
+            const diffY = event.clientY - startY;
+            const newWidth = startWidth + diffX;
+            const newHeight = startHeight + diffY;
+
+            if (newWidth > 0) {
+                element.style.width = newWidth + "px";
+                const newFontSize = startFontSize * (newWidth / startWidth);
+                element.style.fontSize = newFontSize + "px";
+            }
+
+            if (newHeight > 0) {
+                element.style.height = newHeight + "px";
+            }
+        }
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+        isResizing = false;
+    });
+}
