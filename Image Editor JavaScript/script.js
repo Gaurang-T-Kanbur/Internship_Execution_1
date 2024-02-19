@@ -6,26 +6,7 @@ function makeResizableAndDraggable(element) {
 
     element.style.border = "none"; // Initially hide the border
 
-    // Create close button
-    const closeButton = document.createElement("button");
-    closeButton.innerHTML = "&times;"; // Use 'x' character for the close button
-    closeButton.style.position = "absolute";
-    closeButton.style.top = "-10px";
-    closeButton.style.right = "-10px";
-    closeButton.style.border = "none";
-    closeButton.style.background = "transparent";
-    closeButton.style.color = "#000";
-    closeButton.style.cursor = "pointer";
-    element.appendChild(closeButton);
-
-    closeButton.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevent the click event from bubbling to the text box
-        element.remove(); // Remove the text box from the DOM
-    });
-
     element.addEventListener("mousedown", (event) => {
-        if (event.target === closeButton) return; // Ignore events on the close button
-
         if (event.target.classList.contains("editable-text")) {
             element.style.border = "1px dotted #000"; // Show the border on interaction
             const rect = element.getBoundingClientRect();
@@ -80,8 +61,31 @@ function makeResizableAndDraggable(element) {
         isResizing = false;
         element.style.border = "none"; // Hide the border when interaction ends
     });
-}
 
+    // Create a cross icon button
+    const crossIcon = document.createElement("i");
+    crossIcon.classList.add("fas", "fa-times", "cross-icon");
+    crossIcon.style.position = "absolute";
+    crossIcon.style.top = "-20px"; // Position the cross icon above the text box
+    crossIcon.style.right = "0"; // Position the cross icon at the right corner of the text box
+    crossIcon.style.display = "none"; // Initially hide the cross icon
+    element.appendChild(crossIcon);
+
+    // Show the cross icon button when the text box is clicked
+    element.addEventListener("click", () => {
+        crossIcon.style.display = "block";
+    });
+
+    // Hide the cross icon button when the text box loses focus
+    element.addEventListener("blur", () => {
+        crossIcon.style.display = "none";
+    });
+
+    // Remove the text box when the cross icon button is clicked
+    crossIcon.addEventListener("click", () => {
+        element.remove();
+    });
+}
 
 
 document.getElementById("add-text-btn").addEventListener("click", () => {
