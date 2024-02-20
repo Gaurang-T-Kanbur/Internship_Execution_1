@@ -143,6 +143,11 @@ document.querySelector(".preview-img").addEventListener("click", handleTextBoxCl
 
 // Show font dropdown when brightness button is clicked
 document.getElementById("brightness").addEventListener("click", () => {
+    const textElement = document.querySelector(".editable-text");
+    if (!textElement) {
+        alert("Please add text before changing the font color.");
+        return;
+    }
     fontDropdown.style.display = "block";
     cancelIcon.style.display = "block"; // Show the cancel icon
 });
