@@ -23,9 +23,9 @@ document.getElementById("saturation").addEventListener("click", () => {
     document.querySelector(".options").appendChild(colorPickerContainer);
 
     colorPicker.addEventListener("input", () => {
-        // Change font color here
+        
         const fontColor = colorPicker.value;
-        // Apply font color to text
+        
         document.querySelectorAll(".editable-text").forEach((textElement) => {
             textElement.style.color = fontColor;
         });
@@ -56,14 +56,14 @@ document.getElementById("grayscale").addEventListener("click", () => {
     });
 });
 
-// Function to change the font of the selected text box
+
 function changeFont(fontName) {
     if (selectedTextBox) {
         selectedTextBox.style.fontFamily = fontName;
     }
 }
 
-// Font options
+
 const fontOptions = [
     "Arial",
     "Verdana",
@@ -107,19 +107,19 @@ const fontOptions = [
     "Algerian"
 ];
 
-// Dropdown menu for font selection
+
 const fontDropdown = document.createElement("select");
 fontDropdown.addEventListener("change", (event) => {
     changeFont(event.target.value);
-    fontDropdown.selectedIndex = 0; // Reset dropdown to default option
+    fontDropdown.selectedIndex = 0;
 });
 
-// Default option
+
 const defaultOption = document.createElement("option");
 defaultOption.text = "Select Font";
 fontDropdown.add(defaultOption);
 
-// Add font options to dropdown
+
 fontOptions.forEach((fontName) => {
     const option = document.createElement("option");
     option.text = fontName;
@@ -127,21 +127,21 @@ fontOptions.forEach((fontName) => {
     fontDropdown.add(option);
 });
 
-// Hide the font dropdown initially
+
 fontDropdown.style.display = "none";
 
-// Add the dropdown to the options div
+
 document.querySelector(".options").appendChild(fontDropdown);
 
-// Function to handle font change when a text box is clicked
+
 function handleTextBoxClick(event) {
     selectedTextBox = event.target;
 }
 
-// Event listener for text box clicks
+
 document.querySelector(".preview-img").addEventListener("click", handleTextBoxClick);
 
-// Show font dropdown when brightness button is clicked
+
 document.getElementById("brightness").addEventListener("click", () => {
     const textElement = document.querySelector(".editable-text");
     if (!textElement) {
@@ -149,17 +149,78 @@ document.getElementById("brightness").addEventListener("click", () => {
         return;
     }
     fontDropdown.style.display = "block";
-    cancelIcon.style.display = "block"; // Show the cancel icon
+    cancelIcon.style.display = "block"; 
 });
 
-// Hide font dropdown when cross icon is clicked
+
 const cancelIcon = document.createElement("i");
 cancelIcon.classList.add("bx", "bx-x", "cancel");
-cancelIcon.style.display = "none"; // Hide the cancel icon initially
+cancelIcon.style.display = "none"; 
 document.querySelector(".options").appendChild(cancelIcon);
 
 cancelIcon.addEventListener("click", () => {
     fontDropdown.style.display = "none";
-    cancelIcon.style.display = "none"; // Hide the cancel icon
+    cancelIcon.style.display = "none"; 
 });
 
+
+
+
+function changeFontSize(fontSize) {
+    if (selectedTextBox) {
+        selectedTextBox.style.fontSize = fontSize + "px";
+    }
+}
+
+
+const fontSizeOptions = [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 36, 40, 48, 56, 64, 72, 81, 90, 99, 108, 117, 126, 135, 144, 153, 162, 171, 180, 189, 198,207, 360];
+
+const fontSizeDropdown = document.createElement("select");
+fontSizeDropdown.addEventListener("change", (event) => {
+    changeFontSize(event.target.value);
+});
+
+
+fontSizeOptions.forEach((fontSize) => {
+    const option = document.createElement("option");
+    option.text = fontSize;
+    option.value = fontSize;
+    fontSizeDropdown.add(option);
+});
+
+
+fontSizeDropdown.style.display = "none";
+
+
+document.querySelector(".options").appendChild(fontSizeDropdown);
+
+function handleTextBoxClick(event) {
+    selectedTextBox = event.target;
+}
+
+
+document.querySelector(".preview-img").addEventListener("click", handleTextBoxClick);
+
+
+document.getElementById("inversion").addEventListener("click", () => {
+    const textElement = document.querySelector(".editable-text");
+    if (!textElement) {
+        alert("Please add text before changing the font size.");
+        return;
+    }
+    fontSizeDropdown.style.display = "block";
+    fontSizeCancelIcon.style.display = "block";
+});
+
+
+const fontSizeCancelIcon = document.createElement("i");
+fontSizeCancelIcon.classList.add("bx", "bx-x", "cancel");
+fontSizeCancelIcon.style.display = "none"; 
+document.querySelector(".options").appendChild(fontSizeCancelIcon);
+
+fontSizeCancelIcon.addEventListener("click", () => {
+    fontSizeDropdown.style.display = "none";
+    fontSizeCancelIcon.style.display = "none"; 
+
+
+});

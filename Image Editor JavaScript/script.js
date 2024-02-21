@@ -4,11 +4,11 @@ function makeResizableAndDraggable(element) {
     let startX, startY, startWidth, startHeight, startLeft, startTop, startFontSize;
     let containerRect = document.querySelector(".container").getBoundingClientRect();
 
-    element.style.border = "none"; // Initially hide the border
+    element.style.border = "none"; 
 
     element.addEventListener("mousedown", (event) => {
         if (event.target.classList.contains("editable-text")) {
-            element.style.border = "1px dotted #000"; // Show the border on interaction
+            element.style.border = "1px dotted #000"; 
             const rect = element.getBoundingClientRect();
             const isCorner = event.offsetX < 10 || event.offsetX > rect.width - 10 || event.offsetY < 10 || event.offsetY > rect.height - 10;
             if (isCorner) {
@@ -66,17 +66,17 @@ function makeResizableAndDraggable(element) {
     const crossIcon = document.createElement("i");
     crossIcon.classList.add("fas", "fa-times", "cross-icon");
     crossIcon.style.position = "absolute";
-    crossIcon.style.top = "-20px"; // Position the cross icon above the text box
-    crossIcon.style.right = "0"; // Position the cross icon at the right corner of the text box
-    crossIcon.style.display = "none"; // Initially hide the cross icon
+    crossIcon.style.top = "-20px"; 
+    crossIcon.style.right = "0"; 
+    crossIcon.style.display = "none"; 
     element.appendChild(crossIcon);
 
-    // Show the cross icon button when the text box is clicked
+    
     element.addEventListener("click", () => {
         crossIcon.style.display = "block";
     });
 
-    // Hide the cross icon button when the text box loses focus
+   
     element.addEventListener("blur", () => {
         crossIcon.style.display = "none";
     });
@@ -89,7 +89,13 @@ function makeResizableAndDraggable(element) {
 
 
 document.getElementById("add-text-btn").addEventListener("click", () => {
-    const text = document.getElementById("text-input").value;
+
+    const textInput = document.getElementById("text-input");
+    const labelText = document.querySelector('.editor-panel label[for="text-input"]');
+
+    const text = textInput.value.trim();
+
+    // const text = document.getElementById("text-input").value;
     if (text.trim() === "") {
         alert("Please enter some text.");
         return;
@@ -104,8 +110,14 @@ document.getElementById("add-text-btn").addEventListener("click", () => {
     textElement.style.border = "1px solid #000";
     textElement.style.padding = "5px";
     textElement.innerText = text;
+    
+    
 
     document.querySelector(".preview-img").appendChild(textElement);
 
     makeResizableAndDraggable(textElement);
+    textInput.value = "";
+    labelText.innerText = "";
+    labelText.setAttribute("for", "");
+    
 });

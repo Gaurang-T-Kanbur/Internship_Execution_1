@@ -3,34 +3,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Image Editor JavaScript</title>
+    <title>Text Editor</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
   </head>
   <body>
-    <div class="undo-redo-container">
-        <div class="undo" onclick="undo()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4.5 8H15C15 8 20 8 20 12.706C20 18 15 18 15 18H6.286" stroke="#444343" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M7.5 11.5L4 8L7.5 4.5" stroke="#444343" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            <span>Undo</span>
-        </div>
-        <div class="redo" onclick="redo()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19.5 8H9C9 8 4 8 4 12.706C4 18 9 18 9 18H17.714" stroke="#444343" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M16.5 11.5L20 8L16.5 4.5" stroke="#444343" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            <span>Redo</span>
-        </div>
-    </div>
     
+
+       
     <div class="container">
         <!-- <h2>Easy Image Editor</h2> -->
         <div class="wrapper">
@@ -49,10 +31,15 @@
             <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.5484 6.13594C18.5484 6.16406 18.5531 6.20156 18.5625 6.24844C18.5719 6.28594 18.5766 6.32812 18.5766 6.375C18.5766 6.57187 18.4969 6.74531 18.3375 6.89531C18.1875 7.04531 18.0188 7.12031 17.8313 7.12031C17.6813 7.12031 17.5406 7.07344 17.4094 6.97969C17.2875 6.88594 17.1984 6.75937 17.1422 6.6C17.0203 6.24375 16.9031 5.86406 16.7906 5.46094C16.6781 5.04844 16.575 4.64531 16.4813 4.25156C16.3969 3.85781 16.3172 3.4875 16.2422 3.14062C16.1672 2.79375 16.1109 2.49844 16.0734 2.25469C15.5391 2.28281 14.9297 2.30625 14.2453 2.325C13.5609 2.33437 12.825 2.33906 12.0375 2.33906L11.5734 19.7062C12.3422 19.7344 13.0828 19.7906 13.7953 19.875C14.0016 19.8937 14.1609 19.9734 14.2734 20.1141C14.3953 20.2453 14.4563 20.4047 14.4563 20.5922C14.4563 20.8266 14.3766 21.0094 14.2172 21.1406C14.0672 21.2813 13.9078 21.3516 13.7391 21.3516H13.6547C12.8953 21.2578 12.1453 21.1922 11.4047 21.1547C10.6641 21.1266 9.92344 21.1125 9.18281 21.1125C8.43281 21.1125 7.69688 21.1266 6.975 21.1547C6.25313 21.1922 5.53125 21.2578 4.80938 21.3516H4.725C4.51875 21.3516 4.34063 21.2719 4.19063 21.1125C4.05 20.9531 3.97969 20.7797 3.97969 20.5922C3.97969 20.4047 4.04063 20.2453 4.1625 20.1141C4.29375 19.9734 4.45313 19.8937 4.64063 19.875C5.3625 19.7906 6.07031 19.7344 6.76406 19.7062L7.0875 2.25469C6.29063 2.22656 5.54063 2.19375 4.8375 2.15625C4.14375 2.10937 3.52031 2.0625 2.96719 2.01562C2.91094 2.26875 2.84063 2.57812 2.75625 2.94375C2.68125 3.30937 2.59219 3.69844 2.48906 4.11094C2.39531 4.52344 2.29688 4.94531 2.19375 5.37656C2.09063 5.79844 1.98281 6.19687 1.87031 6.57187C1.82344 6.73125 1.73438 6.8625 1.60313 6.96562C1.48125 7.06875 1.34063 7.12031 1.18125 7.12031C0.965625 7.12031 0.7875 7.04531 0.646875 6.89531C0.50625 6.73594 0.435938 6.5625 0.435938 6.375C0.435938 6.34687 0.435938 6.31406 0.435938 6.27656C0.435938 6.22969 0.445313 6.19219 0.464063 6.16406C0.604688 5.66719 0.745313 5.12344 0.885938 4.53281C1.02656 3.94219 1.15313 3.38906 1.26563 2.87344C1.3875 2.35781 1.48594 1.92656 1.56094 1.57969C1.63594 1.23281 1.67344 1.05469 1.67344 1.04531C1.72031 0.867187 1.80469 0.726562 1.92656 0.623437C2.05781 0.520312 2.2125 0.468749 2.39063 0.468749H2.50313C2.99063 0.534374 3.58125 0.590624 4.275 0.637499C4.97813 0.684374 5.73281 0.726562 6.53906 0.764062C7.35469 0.792187 8.19844 0.815624 9.07031 0.834374C9.94219 0.853124 10.7953 0.862499 11.6297 0.862499C12.6516 0.862499 13.5938 0.853124 14.4563 0.834374C15.3188 0.806249 16.0406 0.768749 16.6219 0.721874H16.6781C16.8469 0.721874 17.0016 0.782812 17.1422 0.904687C17.2828 1.01719 17.3672 1.15781 17.3953 1.32656C17.3953 1.33594 17.4094 1.41562 17.4375 1.56562C17.4656 1.71562 17.5031 1.91719 17.55 2.17031C17.5969 2.42344 17.6531 2.71406 17.7188 3.04219C17.7938 3.37031 17.8734 3.7125 17.9578 4.06875C18.0422 4.41562 18.1313 4.77187 18.225 5.1375C18.3281 5.49375 18.4359 5.82656 18.5484 6.13594Z" fill="black"></path>
             </svg>
-            <span>Add Text</span>
+            <span>Add / Edit</span>
         </button>
        
     </div>
+
+    <button id="close-editor-panel" onclick="closeEditorPanel()">
+        <i class="fas fa-times"></i>
+    </button>
+    
 
 
     <div class="editor-panel">
@@ -63,9 +50,9 @@
         <div class="filter">
             <label class="title">Filters</label>
             <div class="options">
-                <button id="brightness" class="active">Brightness</button>
+                <button id="brightness" class="active">Font Style</button>
                 <button id="saturation">Change Colour</button>
-                <button id="inversion">Inversion</button>
+                <button id="inversion">Font Size</button>
                 <button id="grayscale">Change BG-Colour</button>
             </div>
             
@@ -75,6 +62,7 @@
 
     <script src="script.js"></script>
     <script src="options.js"></script>
+    <script src="add.js"></script>
    
     
   </body>
